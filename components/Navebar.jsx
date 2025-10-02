@@ -6,7 +6,6 @@ import Link from 'next/link'
 // import React from 'react'
 
 function Navebar({ session }) {
-    console.log(session);
     return (
         <nav className="bg-white shadow-md py-4 border-b  border-gray-200">
             {" "}

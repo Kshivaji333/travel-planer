@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { auth } from '@/auth';
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,7 @@ async function TripsPage() {
             <div className="">
                 <h1>Dashboard</h1>
                 <Link href={"/trips/new"}>
-                    <Button> My Trips</Button>
+                    <Button> New Trips</Button>
                 </Link>
             </div>
 
@@ -27,4 +28,4 @@ async function TripsPage() {
     )
 }
 
-export default TripsPage
+export default TripsPage;
