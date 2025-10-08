@@ -1,11 +1,14 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { Calendar, Plus } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
+import {Tabs, TabsList, TabsTrigger,TabsContent} from "@/components/ui/tabs";
 
 function TripDetailClient({ trip }) {
+
+    const [activieTab, setActiveTab] = useState("overview");
     return (
         <div className='container mx-auto px-4 py-8 space-y-8'>
             {trip.imageUrl && (
@@ -35,6 +38,38 @@ function TripDetailClient({ trip }) {
                         <Button><Plus className='mr-2 h-5 w-5' />Add Location</Button>
                     </Link>
                 </div>
+            </div>
+            <div className='bg-white p-6 shadow rounded-lg'>
+                <Tabs value={activieTab} onValueChange={setActiveTab}>
+                    <TabsList className="mb-6">
+                        <TabsTrigger value="overview" className="text-lg"> Overview </TabsTrigger>
+                        <TabsTrigger value="itinerary" className="text-lg"> Itinerary </TabsTrigger>
+                        <TabsTrigger value="map" className="text-lg"> Map </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value='overview' className="space-y-6">
+                        <div className='grid md:grid-cols-2 gap-6'>
+                            <div>
+                                <h2 className='text-2xl font-semibold mb-4'>Trip Summary</h2>
+                                 <div className='space-y-4'>
+                                    <div className='flex items-start'>
+                                        <Calendar className='h-6 w-6 mr-3 text-gray-500'></Calendar>
+                                        <div className="">
+                                            <p className='font-medium text-gray-700 '>Dates</p>
+                                            <p className="text-s text-gray-500">
+                                                {trip.startDate.toLocaleDateString()} - {trip.endDate.toLocaleDateString()}
+                                                <br />
+                                                {`${Math.round((trip.endDate.getTime() - trip.startDate.getTime()) / (1000 * 60 * 60 * 24))} days(s)`}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-start'>
+
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </TabsContent>
+                </Tabs>
             </div>
         </div>
     )
