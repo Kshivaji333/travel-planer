@@ -11,10 +11,17 @@ function NewTrip() {
     const [isPending, startTransition] = useTransition();
     const [imageUrl, setImageUrl] = useState(null)
     return (
-        <div className='max-w-lg mx-auto mt-10'>
-            <Card>
-                <CardHeader>New Trip</CardHeader>
-                <CardContent>
+        <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12'>
+            <div className='max-w-2xl mx-auto px-4'>
+                <div className="text-center mb-8">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-2">Create New Trip</h1>
+                    <p className="text-gray-600">Plan your next adventure with our travel planner</p>
+                </div>
+                <Card className="shadow-xl border-0">
+                    <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-t-lg">
+                        <CardTitle className="text-2xl">Trip Details</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-8">
                     <form action={(formData) => {
                         if(imageUrl) {
                             formData.append("imageUrl",imageUrl);
@@ -91,12 +98,13 @@ function NewTrip() {
                                 }}
                             />
                         </div>
-                        <Button type="submit" disabled={isPending} className="w-full">
-                            {isPending ? "Creating..." : "create Trip"}
+                        <Button type="submit" disabled={isPending} className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6">
+                            {isPending ? "Creating..." : "Create Trip"}
                         </Button>
                     </form>
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     )
 }

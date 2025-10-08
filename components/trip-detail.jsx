@@ -1,45 +1,74 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Calendar, MapPin, Plus } from 'lucide-react'
+import { Calendar, MapPin, Plus, Clock, Users, Navigation } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Map from "@/components/map"
 import SortableItenerary from '@/components/sortable-Itenerary'
 function TripDetailClient({ trip }) {
     const [activeTab, setActiveTab] = useState("overview");
     return (
-        <div className='container mx-auto px-4 py-8 space-y-8'>
-            {trip.imageUrl && (
-                <div className='w-full h-72 md:h-96 overflow-hidden rounded-xl shadow-lg relative'>
-                    <Image
-                        src={trip.imageUrl}
-                        alt={trip.title}
-                        className='object-cover'
-                        fill
-                        priority
-                    />
-                </div>
-            )}
-
-            <div className='bg-white p-6 shadow rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center'>
-                <div>
-                    <h1 className='text-4xl font-extrabold text-gray-900'>{trip.title}</h1>
-                    <div className='flex items-center text-gray-500 mt-2'>
-                        <Calendar className='h-5 w-5 mr-2'></Calendar>
-                        <span className='text-lg'>
-                            {trip.startDate.toLocaleDateString()} - {trip.endDate.toLocaleDateString()}
-                        </span>
+        <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50'>
+            <div className='container mx-auto px-4 py-8 space-y-8'>
+                {trip.imageUrl && (
+                    <div className='w-full h-72 md:h-96 overflow-hidden rounded-2xl shadow-2xl relative'>
+                        <Image
+                            src={trip.imageUrl}
+                            alt={trip.title}
+                            className='object-cover'
+                            fill
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div className="absolute bottom-6 left-6 text-white">
+                            <h1 className='text-4xl md:text-5xl font-bold mb-2'>{trip.title}</h1>
+                            <div className='flex items-center text-white/90'>
+                                <Calendar className='h-5 w-5 mr-2'></Calendar>
+                                <span className='text-lg'>
+                                    {trip.startDate.toLocaleDateString()} - {trip.endDate.toLocaleDateString()}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='mt-4 md:mt-0'>
-                    <Link href={`/trips/${trip.id}/itinerary/new`}>
-                        <Button><Plus className='mr-2 h-5 w-5' />Add Location</Button>
-                    </Link>
-                </div>
-            </div>
-            <div className='bg-white p-6 shadow rounded-lg'>
+                )}
+
+                {!trip.imageUrl && (
+                    <div className='bg-white p-8 shadow-lg rounded-2xl'>
+                        <div className='flex flex-col md:flex-row justify-between items-start md:items-center'>
+                            <div>
+                                <h1 className='text-4xl font-bold text-gray-900 mb-4'>{trip.title}</h1>
+                                <div className='flex items-center text-gray-600'>
+                                    <Calendar className='h-5 w-5 mr-2'></Calendar>
+                                    <span className='text-lg'>
+                                        {trip.startDate.toLocaleDateString()} - {trip.endDate.toLocaleDateString()}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='mt-4 md:mt-0'>
+                                <Link href={`/trips/${trip.id}/itinerary/new`}>
+                                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                                        <Plus className='mr-2 h-5 w-5' />Add Location
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {trip.imageUrl && (
+                    <div className='flex justify-end'>
+                        <Link href={`/trips/${trip.id}/itinerary/new`}>
+                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                                <Plus className='mr-2 h-5 w-5' />Add Location
+                            </Button>
+                        </Link>
+                    </div>
+                )}
+                
+                <div className='bg-white p-6 shadow rounded-lg'>
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
                     <TabsList className="mb-6">
                         <TabsTrigger value="overview" className="text-lg"> Overview </TabsTrigger>
@@ -120,11 +149,13 @@ function TripDetailClient({ trip }) {
                         )}
                     </TabsContent>
                 </Tabs>
-            </div>
-            <div className='text-center'>
-                <Link href={`/trips`}>
-                    <Button>Back to trips</Button>
-                </Link>
+                </div>
+                
+                <div className='text-center'>
+                    <Link href={`/trips`}>
+                        <Button>Back to trips</Button>
+                    </Link>
+                </div>
             </div>
         </div>
     )

@@ -25,7 +25,7 @@ function NewLocationClient({tripId}) {
                             required
                             className='w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                         />
-                        <Button className="w-full">{isPending ? "Adding..." : "Add Locationg"}</Button>
+                        <Button className="w-full">{isPending ? "Adding..." : "Add Location"}</Button>
                     </form>
                 </div>
             </div>
