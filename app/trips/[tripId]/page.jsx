@@ -15,7 +15,6 @@ export default async function TripDetails({params}) {
         where: {id: tripId, userId: session.user?.id},
         include: {locations: true},
     });
-
     if(!trip) {
         return <div>Trip not found</div>
     }
