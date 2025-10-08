@@ -69,7 +69,7 @@ async function TripsPage() {
                     ) : (
                         <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                             {sortedTrips.slice(0, 6).map((trip, key) => {
-                                return (<Link href={""} key={key}>
+                                return (<Link href={`/trips/${trip.id}`} key={key}>
                                     <Card className="h-full hover:shadow-md transition-shadow">
                                         <CardHeader >
                                             <CardTitle className="line-clamp-1">

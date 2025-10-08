@@ -19,7 +19,6 @@ function Navebar({ session }) {
                     {session ?
                         <>
                             <Link href={"/trips"} className='text-slate-900 hover:text-sky-500'> My Trips</Link>
-                            <Link href={"/globe"} className='text-slate-900 hover:text-sky-500'>Globe</Link>
                              <button
                             className='flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white p-2 rounded-sm cursor-pointer'
                             onClick={logout }

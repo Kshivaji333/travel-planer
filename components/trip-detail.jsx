@@ -107,23 +107,24 @@ function TripDetailClient({ trip }) {
                     </TabsContent>
 
                     <TabsContent value='map' className="space-y-6">
-                        <div className='grid md:grid-cols-2 gap-6'>
-                     
-                            <div className='h-72 rounded-lg overflow-hidden shadow'>
-                                <Map itineraries={trip.locations} />
-                            </div>
-                            {trip.locations.length === 0 && (
-                                <div className='text-center p-4'>
-                                    <p>Add locations to see them on the map</p>
-                                    <Link href={`/trips/${trip.id}/itinerary/new`}>
-                                        <Button><Plus className='mr-2 h-5 w-5' />Add Location</Button>
-                                    </Link>
-                                </div>
-                            )}
-                         
+                        <div className='h-72 rounded-lg overflow-hidden shadow'>
+                            <Map itineraries={trip.locations} />
                         </div>
+                        {trip.locations.length === 0 && (
+                            <div className='text-center p-4'>
+                                <p>Add locations to see them on the map</p>
+                                <Link href={`/trips/${trip.id}/itinerary/new`}>
+                                    <Button><Plus className='mr-2 h-5 w-5' />Add Location</Button>
+                                </Link>
+                            </div>
+                        )}
                     </TabsContent>
                 </Tabs>
+            </div>
+            <div className='text-center'>
+                <Link href={`/trips`}>
+                    <Button>Back to trips</Button>
+                </Link>
             </div>
         </div>
     )
