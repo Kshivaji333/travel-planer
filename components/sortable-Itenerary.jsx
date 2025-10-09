@@ -1,6 +1,6 @@
 
 import React, { useId, useState } from 'react'
-import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
+import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
 const SortableItem = ({ item }) => {
